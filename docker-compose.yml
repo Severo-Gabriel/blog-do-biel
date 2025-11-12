@@ -1,0 +1,20 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel-app
+    working_dir: /var/www/html
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - laravel
+    stdin_open: true
+    tty: true
+    command: tail -f /dev/null
+
+networks:
+  laravel:
+    driver: bridge
