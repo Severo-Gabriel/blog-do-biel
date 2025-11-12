@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    // Função de cadastro
+    //cadastro
     public function register(Request $request)
     {
         $request->validate([
@@ -29,7 +29,7 @@ class AuthController extends Controller
         return redirect('/dashboard'); // redireciona após cadastro
     }
 
-    // Função de login
+    //login
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
@@ -43,26 +43,26 @@ class AuthController extends Controller
         ]);
     }
 
-    // Logout
+    //Logout
     public function logout()
     {
         Auth::logout();
         return redirect('/');
     }
 
-    // Mostra o formulário de login
+    // formulário log
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
-    // Mostra o formulário de registro (CADASTRO)
+    // formulário regist
     public function showRegisterForm()
     {
         return view('auth.register');
     }
     public function dashboard()
-{
-    return view('auth.dashboard');
-}
+    {
+        return view('admin.dashboard');
+    }
 }

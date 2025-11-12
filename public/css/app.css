@@ -84,7 +84,8 @@ main::before {
   }
 }
 
-/* === TÍTULOS === */
+/*titulo*/
+
 h1 {
   font-size: 2.2em;
   font-weight: 700;
@@ -112,7 +113,7 @@ p {
   line-height: 1.6;
 }
 
-/* === FORMULÁRIO === */
+/* formulario*/
 form {
   display: flex;
   flex-direction: column;
@@ -120,7 +121,7 @@ form {
   gap: 8px;
 }
 
-/* Labels com ícone decorativo */
+/* labels decorativo*/
 label {
   text-align: left;
   margin-top: 12px;
@@ -146,7 +147,7 @@ label::before {
   50% { opacity: 0.5; }
 }
 
-/* === INPUTS === */
+/* input */
 input[type="text"],
 input[type="email"],
 input[type="password"],
