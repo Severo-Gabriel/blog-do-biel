@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Gabiru') - Sistema de Estudos</title>
+    <title>@yield('title', 'Gabiru') - Blog de estudos</title>
     <style>
         * {
             margin: 0;
@@ -181,88 +181,128 @@
             border: 1px solid rgba(255, 193, 7, 0.5);
             color: #ffc107;
         }
+
+        /* Botão de logout */
+        .logout-btn {
+            width: 100%;
+            background-color: rgba(255, 71, 87, 0.2);
+            border: 1px solid rgba(255, 71, 87, 0.5);
+            color: #ff4757;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background-color: rgba(255, 71, 87, 0.3);
+            transform: scale(1.02);
+        }
     </style>
     @stack('styles')
 </head>
 <body>
+    <!-- SIDEBAR (apenas uma vez!) -->
+    @auth
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>🎓 GabiruDev</h2>
+            <p>Blog de Estudos</p>
+        </div>
 
-<div class="sidebar">
-    <div class="sidebar-header">
-        <h2>🎓 Gabiru</h2>
-        <p>Sistema de Estudos</p>
-    </div>
-
-    <nav>
         <div class="nav-section">
             <div class="nav-section-title">Menu Principal</div>
+
             <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
                 <span>📊</span>
                 <span>Dashboard</span>
             </a>
+
             <a href="{{ route('categories.index') }}" class="{{ request()->routeIs('categories.*') ? 'active' : '' }}">
                 <span>📁</span>
                 <span>Categorias</span>
             </a>
+
+            <a href="{{ route('admin.tags.index') }}" class="{{ request()->routeIs('admin.tags.*') ? 'active' : '' }}">
+                <span>🏷️</span>
+                <span>Tags</span>
+            </a>
+            <a href="{{ route('admin.status.index') }}" class="{{ request()->routeIs('admin.status.*') ? 'active' : '' }}">
+                <span>📃</span>
+                <span>Status</span>
+            </a>
+
         </div>
 
-        @yield('sidebar-extra')
-    </nav>
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar">
+                    {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                </div>
+                <div class="user-details">
+                    <div class="user-name">{{ Auth::user()->name }}</div>
+                    <div class="user-email">{{ Auth::user()->email }}</div>
+                </div>
+            </div>
 
-    <div class="sidebar-footer">
-        <div class="user-info">
-            <div class="user-avatar">
-                {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
-            </div>
-            <div class="user-details">
-                <div class="user-name">{{ Auth::user()->name }}</div>
-                <div class="user-email">{{ Auth::user()->email }}</div>
-            </div>
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="logout-btn">
+                    🚪 Sair
+                </button>
+            </form>
         </div>
     </div>
-</div>
+    @endauth
 
-<div class="main-content">
-    <div class="content">
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div class="main-content">
+        <div class="content">
+            <!-- Mensagens de Sucesso -->
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
 
-        @if(session('error'))
-            <div class="alert alert-error">
-                {{ session('error') }}
-            </div>
-        @endif
+            <!-- Mensagens de Erro -->
+            @if(session('error'))
+                <div class="alert alert-error">
+                    {{ session('error') }}
+                </div>
+            @endif
 
-        @if(session('info'))
-            <div class="alert alert-info">
-                {{ session('info') }}
-            </div>
-        @endif
+            <!-- Mensagens de Info -->
+            @if(session('info'))
+                <div class="alert alert-info">
+                    {{ session('info') }}
+                </div>
+            @endif
 
-        @if(session('warning'))
-            <div class="alert alert-warning">
-                {{ session('warning') }}
-            </div>
-        @endif
+            <!-- Mensagens de Aviso -->
+            @if(session('warning'))
+                <div class="alert alert-warning">
+                    {{ session('warning') }}
+                </div>
+            @endif
 
-        @if($errors->any())
-            <div class="alert alert-error">
-                <strong>Ops!</strong> Existem erros no formulário.
-                <ul style="margin-top: 10px; padding-left: 20px;">
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+            <!-- Erros de Validação -->
+            @if($errors->any())
+                <div class="alert alert-error">
+                    <strong>Ops!</strong> Existem erros no formulário.
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-        @yield('content')
+            <!-- CONTEÚDO DA PÁGINA -->
+            @yield('content')
+        </div>
     </div>
-</div>
 
-@stack('scripts')
-
+    @stack('scripts')
 </body>
 </html>

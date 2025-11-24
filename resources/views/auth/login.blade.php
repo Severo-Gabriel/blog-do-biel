@@ -9,7 +9,7 @@
 <body>
     <form method="POST" action="{{ route('login') }}">
         @csrf
-        <h1>Blog BielDev</h1>
+        <h1>Blog GabiruDev</h1>
         <h2>Entre ou cadastre-se para ter acesso aos conteúdos</h2>
 
         <label for="email">E-mail:</label>
@@ -19,6 +19,7 @@
         <label for="senha">Senha:</label>
         <input type="password" name="password" id="password">
         <br><br>
+        <a href="{{ route('register') }}">Registre-se</a>
 
         <input type="submit" value="Login">
     </form>

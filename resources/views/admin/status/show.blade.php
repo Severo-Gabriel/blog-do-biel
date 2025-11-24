@@ -199,22 +199,22 @@
 <div class="sidebar">
     <h2>Menu</h2>
     <a href="{{ route('dashboard') }}">Dashboard</a>
-    <a href="{{ route('categories.index') }}" style="background-color: rgba(255, 255, 255, 0.15);">Categorias</a>
+    <a href="{{ route('admin.status.index') }}" style="background-color: rgba(255, 255, 255, 0.15);">Status</a>
 </div>
 
 <div class="content">
     <div class="header">
         <div class="header-text">
-            <h1>Detalhes da tag</h1>
+            <h1>Detalhes do status</h1>
             <div class="breadcrumb">
                 <a href="{{ route('dashboard') }}">Dashboard</a> /
-                <a href="{{ route('categories.index') }}">Categorias</a> /
-                {{ $category->name }}
+                <a href="{{ route('admin.status.index') }}">Status</a> /
+                {{ $status->name }}
             </div>
         </div>
         <div class="actions">
-            <a href="{{ route('categories.edit', $category) }}" class="btn btn-primary">✏️ Editar</a>
-            <form action="{{ route('categories.destroy', $category) }}" method="POST" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja excluir esta categoria?')">
+            <a href="{{ route('admin.status.edit', $status) }}" class="btn btn-primary">✏️ Editar</a>
+            <form action="{{ route('admin.status.destroy', $status) }}" method="POST" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja excluir este status?')">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">🗑️ Excluir</button>
@@ -224,34 +224,34 @@
 
     <div class="card">
         <div class="detail-group">
-            <div class="detail-label">Nome da Categoria</div>
-            <div class="detail-value">{{ $category->name }}</div>
+            <div class="detail-label">Nome do status</div>
+            <div class="detail-value">{{ $status->name }}</div>
         </div>
 
         <div class="detail-group">
             <div class="detail-label">Descrição</div>
-            <div class="detail-value {{ empty($category->description) ? 'empty' : '' }}">
-                {{ $category->description ?? 'Nenhuma descrição fornecida.' }}
+            <div class="detail-value {{ empty($status->description) ? 'empty' : '' }}">
+                {{ $status->description ?? 'Nenhuma descrição fornecida.' }}
             </div>
         </div>
 
         <div class="metadata">
             <div class="metadata-item">
                 <div class="metadata-label">ID</div>
-                <div class="metadata-value">#{{ $category->id }}</div>
+                <div class="metadata-value">#{{ $status->id }}</div>
             </div>
             <div class="metadata-item">
                 <div class="metadata-label">Criada em</div>
-                <div class="metadata-value">{{ $category->created_at->format('d/m/Y H:i') }}</div>
+                <div class="metadata-value">{{ $status->created_at->format('d/m/Y H:i') }}</div>
             </div>
             <div class="metadata-item">
                 <div class="metadata-label">Última atualização</div>
-                <div class="metadata-value">{{ $category->updated_at->format('d/m/Y H:i') }}</div>
+                <div class="metadata-value">{{ $status->updated_at->format('d/m/Y H:i') }}</div>
             </div>
         </div>
 
         <div style="margin-top: 30px;">
-            <a href="{{ route('categories.index') }}" class="btn btn-secondary">← Voltar para Lista</a>
+            <a href="{{ route('admin.status.index') }}" class="btn btn-secondary">← Voltar para Lista</a>
         </div>
     </div>
 </div>

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Category;
+use App\Http\Controllers\Controller; 
+use App\Models\Category;         
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -25,16 +26,16 @@ class CategoryController extends Controller
         return view('admin.category.create');
     }
 
-    /**
+     /**
      * Store a newly created resource in storage.
-     */
+     */  
     public function store(Request $request)
     {
         $validatedValues = $request->validate([
             'name' => 'required|min:3',
             'description' => 'required',
         ]);
-
+        
         Category::query()->create($validatedValues);
 
         session()->flash('success', 'Categoria criada com sucesso!');
@@ -72,6 +73,6 @@ class CategoryController extends Controller
 
         return redirect()
             ->route('categories.index')
-            ->with('success', 'Categoria excluída com sucesso!');
+            ->with('success', 'Categoria excluída com sucesso!'); 
     }
 }
