@@ -19,7 +19,7 @@
         <label for="senha">Senha:</label>
         <input type="password" name="password" id="password">
         <br><br>
-        <a href="{{ route('register') }}">Registre-se</a>
+        <a href="{{ route('register') }}">Registre-se aqui</a>
 
         <input type="submit" value="Login">
     </form>

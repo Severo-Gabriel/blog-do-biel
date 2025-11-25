@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Gabiru') - Blog de estudos</title>
+    <title>@yield('title', 'GabDev') - Blog de estudos</title>
     <style>
         * {
             margin: 0;
@@ -202,11 +202,10 @@
     @stack('styles')
 </head>
 <body>
-    <!-- SIDEBAR (apenas uma vez!) -->
     @auth
     <div class="sidebar">
         <div class="sidebar-header">
-            <h2>🎓 GabiruDev</h2>
+            <h2>🎓 GabDev</h2>
             <p>Blog de Estudos</p>
         </div>
 
@@ -255,38 +254,33 @@
     </div>
     @endauth
 
-    <!-- CONTEÚDO PRINCIPAL -->
+
     <div class="main-content">
         <div class="content">
-            <!-- Mensagens de Sucesso -->
             @if(session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
                 </div>
             @endif
 
-            <!-- Mensagens de Erro -->
             @if(session('error'))
                 <div class="alert alert-error">
                     {{ session('error') }}
                 </div>
             @endif
 
-            <!-- Mensagens de Info -->
             @if(session('info'))
                 <div class="alert alert-info">
                     {{ session('info') }}
                 </div>
             @endif
 
-            <!-- Mensagens de Aviso -->
             @if(session('warning'))
                 <div class="alert alert-warning">
                     {{ session('warning') }}
                 </div>
             @endif
 
-            <!-- Erros de Validação -->
             @if($errors->any())
                 <div class="alert alert-error">
                     <strong>Ops!</strong> Existem erros no formulário.
@@ -298,7 +292,6 @@
                 </div>
             @endif
 
-            <!-- CONTEÚDO DA PÁGINA -->
             @yield('content')
         </div>
     </div>

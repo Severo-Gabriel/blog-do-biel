@@ -157,7 +157,7 @@
 @section('content')
     <div class="header">
         <h1>Gerenciar lista de Tags</h1>
-        <a href="{{ route('admin.tags.create') }}" class="btn">Nova Tag</a>
+        <a href="{{ route('admin.tags.create') }}" class="btn">Criar Tag</a>
     </div>
 
     <div class="table-container">
@@ -165,7 +165,7 @@
             <div class="empty-state">
                 <p>📃</p>
                 <p>Nenhuma Tag Criada.</p>
-                <p style="font-size: 0.9rem; opacity: 0.7;">Clique em "Nova Tag" para começar.</p>
+                <p style="font-size: 0.9rem; opacity: 0.7;">Clique em "Criar Tag" para começar.</p>
             </div>
         @else
             <table>

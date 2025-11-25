@@ -1,6 +1,6 @@
 @extends('admin.app')
 
-@section('title', 'Categorias')
+@section('title', 'Status')
 
 @push('styles')
     <style>
@@ -157,7 +157,7 @@
 @section('content')
     <div class="header">
         <h1>Gerenciar Status</h1>
-        <a href="{{ route('admin.status.create') }}" class="btn">Criar Status</a>
+        <a href="{{ route('admin.status.create') }}" class="btn">Novo Status</a>
     </div>
 
     <div class="table-container">

@@ -199,7 +199,7 @@
 
 
     <div class="info-banner">
-        <h3>🎯 Sistema de Estudos Gabiru</h3>
+        <h3>🎯 Sistema de Estudos GabDev</h3>
         <p>
             Organize seus estudos de forma eficiente. Crie categorias, adicione materiais e acompanhe seu progresso.
             Transforme conhecimento em resultados!

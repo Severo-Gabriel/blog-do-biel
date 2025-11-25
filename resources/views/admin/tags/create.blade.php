@@ -205,7 +205,7 @@
         <div class="breadcrumb">
             <a href="{{ route('dashboard') }}">Dashboard</a> /
             <a href="{{ route('admin.tags.index') }}">Tags</a> /
-            Nova
+            Nova Tag
         </div>
     </div>
 
@@ -234,7 +234,7 @@
                     id="name"
                     name="name"
                     value="{{ old('name') }}"
-                    placeholder="Ex: Tecnologia, Esportes, Educação..."
+                    placeholder="Ex: Tech, Agro, Edu..."
                     class="{{ $errors->has('name') ? 'input-error' : '' }}"
                     required
                 >
@@ -250,7 +250,7 @@
                 <textarea
                     id="description"
                     name="description"
-                    placeholder="Descreva brevemente o objetivo desta tag..."
+                    placeholder="Descreve brevemente a descrição desta Tag..."
                     class="{{ $errors->has('description') ? 'input-error' : '' }}"
                 >{{ old('description') }}</textarea>
                 @error('description')

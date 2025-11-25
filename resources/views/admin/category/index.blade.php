@@ -157,7 +157,7 @@
 @section('content')
     <div class="header">
         <h1>Gerenciar Categorias</h1>
-        <a href="{{ route('categories.create') }}" class="btn">Nova Categoria</a>
+        <a href="{{ route('categories.create') }}" class="btn">Criar Categoria</a>
     </div>
 
     <div class="table-container">
@@ -165,7 +165,7 @@
             <div class="empty-state">
                 <p>📁</p>
                 <p>Nenhuma categoria cadastrada ainda.</p>
-                <p style="font-size: 0.9rem; opacity: 0.7;">Clique em "Nova Categoria" para começar.</p>
+                <p style="font-size: 0.9rem; opacity: 0.7;">Clique em "Criar Categoria" para começar.</p>
             </div>
         @else
             <table>
