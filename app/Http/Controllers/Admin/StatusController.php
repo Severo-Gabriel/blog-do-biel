@@ -21,12 +21,13 @@ class StatusController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|min:3',
-            'description' => 'nullable'
+        $validate = $request->validate([
+            'name'=>'required|min:3',
+            'description'=>'nullable'
+       
         ]);
 
-        Status::create($request->all());
+        Status::create($validate);
 
         return redirect()->route('admin.status.index')->with('success', 'Status criado com sucesso!');
     }
@@ -54,10 +55,9 @@ class StatusController extends Controller
 
         return redirect()->route('admin.status.index')->with('success', 'Status removido!');
     }
-    public function show($id)
+    public function show(Status $status)
     {
-    $status = Status::findOrFail($id);
-    return view('admin.status.show', compact('status'));
+        return view('admin.status.show', compact('status'));
     }
     
 }
