@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nova Categoria</title>
+@extends('admin.app')
+
+@section('title','Criar Categoria')
+
+@push ('styles')
+
     <style>
         body {
             margin: 0;
@@ -190,15 +190,9 @@
             color: #ff4757;
         }
     </style>
-</head>
-<body>
+@endpush
 
-<div class="sidebar">
-    <h2>Menu</h2>
-    <a href="{{ route('dashboard') }}">Dashboard</a>
-    <a href="{{ route('categories.index') }}" style="background-color: rgba(255, 255, 255, 0.15);">Categorias</a>
-</div>
-
+@section('content')
 <div class="content">
     <div class="header">
         <h1>Nova Categoria</h1>
@@ -265,6 +259,4 @@
         </form>
     </div>
 </div>
-
-</body>
-</html>
+@endsection

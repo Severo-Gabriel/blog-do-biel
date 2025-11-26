@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Status</title>
+@extends('admin.app')
+
+@section('title', 'Editar Status')
+
+@push('styles')
     <style>
         body {
             margin: 0;
@@ -198,15 +197,9 @@
             font-size: 0.9rem;
         }
     </style>
-</head>
-<body>
+@endpush
 
-<div class="sidebar">
-    <h2>Menu</h2>
-    <a href="{{ route('dashboard') }}">Dashboard</a>
-    <a href="{{ route('admin.status.index') }}" style="background-color: rgba(255, 255, 255, 0.15);">Status</a>
-</div>
-
+@section('content')
 <div class="content">
     <div class="header">
         <h1>Editar Status</h1>
@@ -272,6 +265,4 @@
         </form>
     </div>
 </div>
-
-</body>
-</html>
+@endsection

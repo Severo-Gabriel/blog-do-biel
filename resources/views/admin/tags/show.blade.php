@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes da Categoria</title>
+@extends('admin.app')
+
+@section('title', 'Tags')
+
+@push('styles')
+
     <style>
         body {
             margin: 0;
@@ -193,15 +193,9 @@
             background-color: rgba(255, 71, 87, 0.5);
         }
     </style>
-</head>
-<body>
+@endpush
 
-<div class="sidebar">
-    <h2>Menu</h2>
-    <a href="{{ route('dashboard') }}">Dashboard</a>
-    <a href="{{ route('admin.tags.index') }}" style="background-color: rgba(255, 255, 255, 0.15);">Tags</a>
-</div>
-
+@section('content')
 <div class="content">
     <div class="header">
         <div class="header-text">
@@ -255,6 +249,4 @@
         </div>
     </div>
 </div>
-
-</body>
-</html>
+@endsection
