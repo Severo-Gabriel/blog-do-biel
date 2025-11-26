@@ -22,8 +22,8 @@ class StatusController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'name'=>'required|min:3',
-            'description'=>'nullable'
+            'name'=>'required|string|max:155|unique:status',
+            'description'=>'nullable|string|max:500'
        
         ]);
 

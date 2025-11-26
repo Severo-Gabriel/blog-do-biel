@@ -198,7 +198,7 @@
         <div class="breadcrumb">
             <a href="{{ route('dashboard') }}">Dashboard</a> /
             <a href="{{ route('admin.status.index') }}">Status</a> /
-            <a href="{{ route('admin.tags.index') }}">Tags</a> /
+            <a href="{{ route('admin.status.create') }}">Criar</a> /
      
         </div>
     </div>
@@ -228,7 +228,7 @@
                     id="name"
                     name="name"
                     value="{{ old('name') }}"
-                    placeholder="Ex: Ativo, Desativado,..."
+                    placeholder="Ex: Novo, Antigo..."
                     class="{{ $errors->has('name') ? 'input-error' : '' }}"
                     required
                 >

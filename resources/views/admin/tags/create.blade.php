@@ -198,7 +198,7 @@
         <div class="breadcrumb">
             <a href="{{ route('dashboard') }}">Dashboard</a> /
             <a href="{{ route('admin.tags.index') }}">Tags</a> /
-            Nova Tag
+            <a href="{{ route('admin.tags.create') }}">Criar</a> /
         </div>
     </div>
 
