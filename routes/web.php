@@ -8,6 +8,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\StatusController;
+use App\Http\Controllers\Admin\AuthorController;
 
 
 Route::get('/', function (): View {
@@ -26,7 +27,12 @@ Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/new', [BlogController::class, 'newPosts'])->name('blog.new');
 Route::get('/blog/old', [BlogController::class, 'oldPosts'])->name('blog.old');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
-Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth'])
+->prefix('admin')
+->name('admin.')
+->group(function () {
 Route::resource('tags', TagController::class);
 Route::resource('status', StatusController::class);
+Route::resource('authors', AuthorController::class);
+
 });

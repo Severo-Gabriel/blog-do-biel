@@ -1,9 +1,8 @@
-@extends('admin.app')
+@extends ('admin.app')
 
-@section('title','Criar Categoria')
+@section('title','Editar Autor')
 
 @push ('styles')
-
     <style>
         body {
             margin: 0;
@@ -189,26 +188,27 @@
             border: 1px solid rgba(255, 71, 87, 0.5);
             color: #ff4757;
         }
+
+        .info-badge {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
     </style>
 @endpush
 
 @section('content')
 <div class="content">
     <div class="header">
-        <h1>Nova Categoria</h1>
+        <h1>Editar Categoria</h1>
         <div class="breadcrumb">
             <a href="{{ route('dashboard') }}">Dashboard</a> /
-            <a href="{{ route('categories.index') }}">Categorias</a> /
-            <a href="{{ route('categories.create') }}">Criar</a> /
-            Nova
+            <a href="{{ route('admin.authors.index') }}">Autores</a> /
+            Editar
         </div>
     </div>
-
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
 
     @if($errors->any())
         <div class="alert alert-error">
@@ -217,8 +217,13 @@
     @endif
 
     <div class="form-container">
-        <form action="{{ route('categories.store') }}" method="POST">
+        <div class="info-badge">
+            📝 Editando: <strong>{{ $author->name }}</strong>
+        </div>
+
+        <form action="{{ route('admin.authors.update', $author) }}" method="POST">
             @csrf
+            @method('PUT')
 
             <div class="form-group">
                 <label for="name">
@@ -228,7 +233,7 @@
                     type="text"
                     id="name"
                     name="name"
-                    value="{{ old('name') }}"
+                    value="{{ old('name', $author->name) }}"
                     placeholder="Ex: Tecnologia, Esportes, Educação..."
                     class="{{ $errors->has('name') ? 'input-error' : '' }}"
                     required
@@ -245,19 +250,19 @@
                 <textarea
                     id="description"
                     name="description"
-                    placeholder="Descreva brevemente o objetivo desta categoria..."
+                    placeholder="Tecnologia, Educação, Agronomia..."
                     class="{{ $errors->has('description') ? 'input-error' : '' }}"
-                >{{ old('description') }}</textarea>
+                >{{ old('description', $author->description) }}</textarea>
                 @error('description')
                 <span class="error">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Salvar Categoria</button>
-                <a href="{{ route('categories.index') }}" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Atualizar Categoria</button>
+                <a href="{{ route('admin.authors.index') }}" class="btn btn-secondary">Cancelar</a>
             </div>
         </form>
     </div>
 </div>
-@endsection                                                                                             
+@endsection

@@ -1,6 +1,6 @@
 @extends('admin.app')
 
-@section('title', 'Categorias')
+@section('title', 'Autores')
 
 @push('styles')
     <style>
@@ -156,16 +156,16 @@
 
 @section('content')
     <div class="header">
-        <h1>Gerenciar Categorias</h1>
-        <a href="{{ route('categories.create') }}" class="btn">Criar Categoria</a>
+        <h1>Gerenciar Autores</h1>
+        <a href="{{ route('admin.authors.create') }}" class="btn">Criar Autor</a>
     </div>
 
     <div class="table-container">
-        @if($categories->isEmpty())
+        @if($authors->isEmpty())
             <div class="empty-state">
-                <p>📁</p>
-                <p>Nenhuma categoria cadastrada ainda.</p>
-                <p style="font-size: 0.9rem; opacity: 0.7;">Clique em "Criar Categoria" para começar.</p>
+                <p>🧑‍💼</p>
+                <p>Nenhum autor cadastrado ainda.</p>
+                <p style="font-size: 0.9rem; opacity: 0.7;">Clique em "Criar Autor" para começar.</p>
             </div>
         @else
             <table>
@@ -179,20 +179,20 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($categories as $category)
+                @foreach($authors as $author)
                     <tr>
-                        <td>{{ $category->id }}</td>
+                        <td>{{ $author->id }}</td>
                         <td>
-                            <a href="{{ route('categories.show', $category) }}" style="color: #fff; text-decoration: none; font-weight: 500;">
-                                {{ $category->name }}
+                            <a href="{{ route('admin.authors.show', $author) }}" style="color: #fff; text-decoration: none; font-weight: 500;">
+                                {{ $author->name }}
                             </a>
                         </td>
-                        <td>{{ $category->slug ?? '-' }}</td>
-                        <td>{{ $category->created_at->format('d/m/Y H:i') }}</td>
+                        <td>{{ $author->slug ?? '-' }}</td>
+                        <td>{{ $author->created_at->format('d/m/Y H:i') }}</td>
                         <td style="text-align: center;">
-                            <a href="{{ route('categories.show', $category) }}" class="btn-action" title="Visualizar">👁️</a>
-                            <a href="{{ route('categories.edit', $category) }}" class="btn-action" title="Editar">✏️</a>
-                            <form action="{{ route('categories.destroy', $category) }}" method="POST" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja excluir essa categoria?')">
+                            <a href="{{ route('admin.authors.show', $author) }}" class="btn-action" title="Visualizar">👁️</a>
+                            <a href="{{ route('admin.authors.edit', $author) }}" class="btn-action" title="Editar">✏️</a>
+                            <form action="{{ route('admin.authors.destroy', $author) }}" method="POST" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja excluir essa categoria?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn-action" title="Excluir">🗑️</button>
@@ -203,28 +203,28 @@
                 </tbody>
             </table>
  
-            @if($categories->hasPages())
+            @if($authors->hasPages())
                 <div class="pagination-wrapper">
                     <div class="pagination-info">
-                        Mostrando {{ $categories->firstItem() }} a {{ $categories->lastItem() }} de {{ $categories->total() }} resultados
+                        Mostrando {{ $authors->firstItem() }} a {{ $authors->lastItem() }} de {{ $authors->total() }} resultados
                     </div>
                     <div class="pagination">
-                        @if ($categories->onFirstPage())
+                        @if ($authors->onFirstPage())
                             <span class="page-link disabled">‹</span>
                         @else
-                            <a href="{{ $categories->previousPageUrl() }}" class="page-link">‹</a>
+                            <a href="{{ $authors->previousPageUrl() }}" class="page-link">‹</a>
                         @endif
 
-                        @foreach ($categories->getUrlRange(1, $categories->lastPage()) as $page => $url)
-                            @if ($page == $categories->currentPage())
+                        @foreach ($authors->getUrlRange(1, $authors->lastPage()) as $page => $url)
+                            @if ($page == $authors->currentPage())
                                 <span class="page-link active">{{ $page }}</span>
                             @else
                                 <a href="{{ $url }}" class="page-link">{{ $page }}</a>
                             @endif
                         @endforeach
 
-                        @if ($categories->hasMorePages())
-                            <a href="{{ $categories->nextPageUrl() }}" class="page-link">›</a>
+                        @if ($authors->hasMorePages())
+                            <a href="{{ $authors->nextPageUrl() }}" class="page-link">›</a>
                         @else
                             <span class="page-link disabled">›</span>
                         @endif

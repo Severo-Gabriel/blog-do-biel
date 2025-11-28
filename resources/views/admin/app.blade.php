@@ -198,6 +198,33 @@
             background-color: rgba(255, 71, 87, 0.3);
             transform: scale(1.02);
         }
+        .form-input {
+        width: 100%;
+        padding: 14px 16px;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 8px;
+        color: #fff;
+        font-size: 16px;
+        outline: none;
+        margin-bottom: 16px;
+        }
+
+        .form-input::placeholder {
+        color: rgba(255, 255, 255, 0.6);    
+        }
+
+        .form-input[type="date"] {
+        color-scheme: dark;
+        }
+
+        .form-input[type="date"]::-webkit-datetime-edit {
+        color: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+        }
     </style>
     @stack('styles')
 </head>
@@ -229,6 +256,11 @@
             <a href="{{ route('admin.status.index') }}" class="{{ request()->routeIs('admin.status.*') ? 'active' : '' }}">
                 <span>📃</span>
                 <span>Status</span>
+            </a>
+             </a>
+            <a href="{{ route('admin.authors.index') }}" class="{{ request()->routeIs('admin.authors.*') ? 'active' : '' }}">
+                <span>🧑‍💼</span>
+                <span>Autor</span>
             </a>
 
         </div>

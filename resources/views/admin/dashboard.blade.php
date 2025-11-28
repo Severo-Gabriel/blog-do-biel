@@ -194,7 +194,7 @@
                 🚪 Sair
             </button>
         </form>
-    </div>
+    </div>                                                                      
 
 
 
@@ -204,5 +204,7 @@
             Organize seus estudos de forma eficiente. Crie categorias, adicione materiais e acompanhe seu progresso.
             Transforme conhecimento em resultados!
         </p>
+    </div>
+    <div class="ïnfo-banner">
     </div>
 @endsection
