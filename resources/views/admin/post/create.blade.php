@@ -1,9 +1,8 @@
 @extends('admin.app')
 
-@section('title','Criar Categoria')
+@section('title', 'Criar Posts')
 
-@push ('styles')
-
+@push('styles')
     <style>
         body {
             margin: 0;
@@ -15,9 +14,6 @@
 
         .sidebar {
             width: 250px;
-
-
-            
             background-color: rgba(20, 20, 40, 0.9);
             color: #fff;
             display: flex;
@@ -198,12 +194,12 @@
 @section('content')
 <div class="content">
     <div class="header">
-        <h1>Nova Categoria</h1>
+        <h1>Novo Status</h1>
         <div class="breadcrumb">
             <a href="{{ route('dashboard') }}">Dashboard</a> /
-            <a href="{{ route('admin.categories.index') }}">Categorias</a> /
-            <a href="{{ route('admin.categories.create') }}">Criar</a> /
-            Nova
+            <a href="{{ route('admin.posts.index') }}">Status</a> /
+            <a href="{{ route('admin.posts.create') }}">Criar</a> /
+     
         </div>
     </div>
 
@@ -220,47 +216,134 @@
     @endif
 
     <div class="form-container">
-        <form action="{{ route('admin.categories.store') }}" method="POST">
+        <form action="{{ route('admin.posts.store') }}" method="POST">
             @csrf
 
             <div class="form-group">
-                <label for="name">
-                    Nome <span class="required">*</span>
+                <label for="title">
+                    Título: <span class="required">*</span>
                 </label>
                 <input
                     type="text"
-                    id="name"
-                    name="name"
-                    value="{{ old('name') }}"
-                    placeholder="Ex: Tecnologia, Esportes, Educação..."
-                    class="{{ $errors->has('name') ? 'input-error' : '' }}"
+                    id="title"
+                    name="title"
+                    value="{{ old('title') }}"
+                    placeholder="Ex: Tecnologias no agro, Como a tecnologia ajuda na educação... "
+                    class="{{ $errors->has('title') ? 'input-error' : '' }}"
                     required
                 >
-                @error('name')
-                <span class="error">{{ $message }}</span>
+                @error('title')
+                    <span class="error">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label for="description">
-                    Descrição
+                <label for="subject">
+                    Assunto: <span class="required">*</span>
+                </label>
+                <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    value="{{ old('subject') }}"
+                    placeholder="Ex: IA, Tecnologias Educacionais, Agricultura... "
+                    class="{{ $errors->has('subject') ? 'input-error' : '' }}"
+                    required
+                >
+                @error('subject')
+                    <span class="error">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="tags_id">
+                    Catogorias: <span class="required">*</span>
+                </label>  
+                <select data-placeholder="Begin typing a name to filter..." name="category_id" required>
+                    <option value>--- Selecione uma opção ---</option>
+
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+
+                @error('tag_id')
+                    <span class="error">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="tags_id">
+                    Tags: <span class="required">*</span>
+                </label>  
+                <select data-placeholder="Begin typing a name to filter..." multiple class="chosen-select" name="tags[]">
+                    <option value>--- Selecione uma opção ---</option>
+                    
+                      @foreach ($tags as $tag)
+                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                    @endforeach
+
+                </select>
+
+                @error('tag_id')
+                    <span class="error">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="'author_id">
+                    Autor: <span class="required">*</span>
+                </label>
+
+                <select name="author_id" id="author_id" class="{{ $errors->has('author_id') ? 'input-error' : '' }}">
+                    <option value="">Selecione</option>
+                    <option value="2">Severin</option>
+                    <option value="author2">Nego dé</option>
+                    <option value="author3">Jaspion</option>
+                </select>
+
+                @error('authors_id')
+                    <span class="error">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="'status_id">
+                    Status: <span class="required">*</span>
+                </label>
+
+                <select name="status_id" id="status_id" class="{{ $errors->has('status_id') ? 'input-error' : '' }}">
+                    <option value="">Selecione</option>
+                    <option value="status1">Publicado</option>
+                    <option value="status2">Arquivado</option>
+                    <option value="5">Rascunho</option>
+                </select>
+
+                @error('status_id')
+                    <span class="error">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="content">
+                    Conteúdo do Post:
                 </label>
                 <textarea
-                    id="description"
-                    name="description"
-                    placeholder="Descreva brevemente o objetivo desta categoria..."
-                    class="{{ $errors->has('description') ? 'input-error' : '' }}"
-                >{{ old('description') }}</textarea>
-                @error('description')
+                    id="content"
+                    name="content"
+                    placeholder="Conteúdo do post"
+                    class="{{ $errors->has('content') ? 'input-error' : '' }}"
+                >{{ old('content') }}</textarea>
+                @error('content')
                 <span class="error">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Salvar Categoria</button>
-                <a href="{{ route('admin.categories.index') }}" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Salvar Status</button>
+                <a href="{{ route('admin.posts.index') }}" class="btn btn-secondary">Cancelar</a>
             </div>
         </form>
     </div>
 </div>
-@endsection                                                                                             
+@endsection

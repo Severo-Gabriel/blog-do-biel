@@ -109,22 +109,22 @@
             box-sizing: border-box;
         }
 
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="date"]:focus,
-        textarea:focus {
-            outline: none;
-            border-color: rgba(255, 255, 255, 0.5);
-            background-color: rgba(255, 255, 255, 0.15);
-        }
+            input[type="text"]:focus,
+            input[type="email"]:focus,
+            input[type="date"]:focus,
+            textarea:focus {
+                outline: none;
+                border-color: rgba(255, 255, 255, 0.5);
+                background-color: rgba(255, 255, 255, 0.15);
+            }
 
-        input[type="text"]::placeholder,
-        input[type="email"]::placeholder,
-        textarea::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
+            input[type="text"]::placeholder,
+            input[type="email"]::placeholder,
+            textarea::placeholder {
+                color: rgba(255, 255, 255, 0.5);
+            }
 
-        textarea {
+            textarea {
             resize: vertical;
             min-height: 120px;
         }
@@ -214,6 +214,8 @@
         color-scheme: dark;
         }
 
+        
+
         .form-input[type="date"]::-webkit-datetime-edit {
         color: rgba(255, 255, 255, 0.9);
         }
@@ -275,7 +277,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="birth_date" class="form-label">Data de Nascimento</label>
+                            <label for="birth_date" class="form-label">Data de nascimento</label>
                             <input 
                                 type="date" 
                                 class="form-control @error('birth_date') is-invalid @enderror"

@@ -46,7 +46,6 @@ class TagController extends Controller
             'description.max' => 'A descrição deve ter no máximo 500 caracteres',
         ]);
 
-        // Valor padrão para active se não for enviado
         $validated['active'] = $request->has('active') ? true : false;
 
         Tag::create($validated);
@@ -55,22 +54,11 @@ class TagController extends Controller
                         ->with('success', 'Tag criada com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Tag $tag)
     {
         return view('admin.tags.edit', compact('tag'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Tag $tag)
     {
         $validated = $request->validate([

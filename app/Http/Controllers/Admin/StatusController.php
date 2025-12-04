@@ -22,7 +22,7 @@ class StatusController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'name'=>'required|string|max:155|unique:status',
+            'name'=>'required|string|max:155',
             'description'=>'nullable|string|max:500'
        
         ]);

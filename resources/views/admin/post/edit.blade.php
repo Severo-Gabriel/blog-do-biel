@@ -1,9 +1,8 @@
 @extends('admin.app')
 
-@section('title','Criar Categoria')
+@section('title', 'Editar Status')
 
-@push ('styles')
-
+@push('styles')
     <style>
         body {
             margin: 0;
@@ -15,9 +14,6 @@
 
         .sidebar {
             width: 250px;
-
-
-            
             background-color: rgba(20, 20, 40, 0.9);
             color: #fff;
             display: flex;
@@ -192,26 +188,27 @@
             border: 1px solid rgba(255, 71, 87, 0.5);
             color: #ff4757;
         }
+
+        .info-badge {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
     </style>
 @endpush
 
 @section('content')
 <div class="content">
     <div class="header">
-        <h1>Nova Categoria</h1>
+        <h1>Editar Status</h1>
         <div class="breadcrumb">
             <a href="{{ route('dashboard') }}">Dashboard</a> /
-            <a href="{{ route('admin.categories.index') }}">Categorias</a> /
-            <a href="{{ route('admin.categories.create') }}">Criar</a> /
-            Nova
+            <a href="{{ route('admin.status.index') }}">Status</a> /
+            Editar
         </div>
     </div>
-
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
 
     @if($errors->any())
         <div class="alert alert-error">
@@ -220,8 +217,13 @@
     @endif
 
     <div class="form-container">
-        <form action="{{ route('admin.categories.store') }}" method="POST">
+        <div class="info-badge">
+            📝 Editando: <strong>{{ $status->name }}</strong>
+        </div>
+
+        <form action="{{ route('admin.status.update', $status) }}" method="POST">
             @csrf
+            @method('PUT')
 
             <div class="form-group">
                 <label for="name">
@@ -231,8 +233,8 @@
                     type="text"
                     id="name"
                     name="name"
-                    value="{{ old('name') }}"
-                    placeholder="Ex: Tecnologia, Esportes, Educação..."
+                    value="{{ old('name', $status->name) }}"
+                    placeholder="Ex: Ativo, Destativado..."
                     class="{{ $errors->has('name') ? 'input-error' : '' }}"
                     required
                 >
@@ -248,19 +250,19 @@
                 <textarea
                     id="description"
                     name="description"
-                    placeholder="Descreva brevemente o objetivo desta categoria..."
+                    placeholder="Descreva sobre o status..."
                     class="{{ $errors->has('description') ? 'input-error' : '' }}"
-                >{{ old('description') }}</textarea>
+                >{{ old('description', $status->description) }}</textarea>
                 @error('description')
                 <span class="error">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Salvar Categoria</button>
-                <a href="{{ route('admin.categories.index') }}" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Atualizar Status</button>
+                <a href="{{ route('admin.status.index') }}" class="btn btn-secondary">Cancelar</a>
             </div>
         </form>
     </div>
 </div>
-@endsection                                                                                             
+@endsection

@@ -1,6 +1,6 @@
 @extends('admin.app')
 
-@section('title', 'Categorias')
+@section('title', 'Posts')
 
 @push('styles')
     <style>
@@ -156,43 +156,43 @@
 
 @section('content')
     <div class="header">
-        <h1>Gerenciar Categorias</h1>
-        <a href="{{ route('admin.categories.create') }}" class="btn">Criar Categoria</a>
+        <h1>Gerenciar Posts</h1>
+        <a href="{{ route('admin.posts.create') }}" class="btn">Novo Post</a>
     </div>
 
     <div class="table-container">
-        @if($categories->isEmpty())
+        @if($posts->isEmpty())
             <div class="empty-state">
-                <p>📁</p>
-                <p>Nenhuma categoria cadastrada ainda.</p>
-                <p style="font-size: 0.9rem; opacity: 0.7;">Clique em "Criar Categoria" para começar.</p>
+                <p>📃</p>
+                <p>Nenhum Post criado.</p>
+                <p style="font-size: 0.9rem; opacity: 0.7;">Clique em "Novo Post" para começar.</p>
             </div>
         @else
             <table>
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nome</th>
-                    <th>Slug</th>
+                    <th>titulo</th>
+                    <th>subject</th>
                     <th>Data de Criação</th>
                     <th style="text-align: center; width: 200px;">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($categories as $category)
+                @foreach($posts as $post)
                     <tr>
-                        <td>{{ $category->id }}</td>
+                        <td>{{ $post->id }}</td>
                         <td>
-                            <a href="{{ route('admin.categories.show', $category) }}" style="color: #fff; text-decoration: none; font-weight: 500;">
-                                {{ $category->name }}
+                            <a href="{{ route('admin.posts.show', $post) }}" style="color: #fff; text-decoration: none; font-weight: 500;">
+                                {{ $post->title }}
                             </a>
                         </td>
-                        <td>{{ $category->slug ?? '-' }}</td>
-                        <td>{{ $category->created_at->format('d/m/Y H:i') }}</td>
+                        <td>{{ $post->subject ?? '-' }}</td>
+                        <td>{{ $post->created_at->format('d/m/Y H:i') }}</td>
                         <td style="text-align: center;">
-                            <a href="{{ route('admin.categories.show', $category) }}" class="btn-action" title="Visualizar">👁️</a>
-                            <a href="{{ route('admin.categories.edit', $category) }}" class="btn-action" title="Editar">✏️</a>
-                            <form action="{{ route('admin.categories.destroy', $category) }}" method="POST" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja excluir essa categoria?')">
+                            <a href="{{ route('admin.posts.show', $post) }}" class="btn-action" title="Visualizar">👁️</a>
+                            <a href="{{ route('admin.posts.edit', $post) }}" class="btn-action" title="Editar">✏️</a>
+                            <form action="{{ route('admin.posts.destroy', $post) }}" method="POST" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja excluir esta categoria?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn-action" title="Excluir">🗑️</button>
@@ -202,29 +202,28 @@
                 @endforeach
                 </tbody>
             </table>
- 
-            @if($categories->hasPages())
+            @if($posts->hasPages())
                 <div class="pagination-wrapper">
                     <div class="pagination-info">
-                        Mostrando {{ $categories->firstItem() }} a {{ $categories->lastItem() }} de {{ $categories->total() }} resultados
+                        Mostrando {{ $posts->firstItem() }} a {{ $posts->lastItem() }} de {{ $posts->total() }} resultados
                     </div>
                     <div class="pagination">
-                        @if ($categories->onFirstPage())
+                        @if ($posts->onFirstPage())
                             <span class="page-link disabled">‹</span>
                         @else
-                            <a href="{{ $categories->previousPageUrl() }}" class="page-link">‹</a>
+                            <a href="{{ $posts->previousPageUrl() }}" class="page-link">‹</a>
                         @endif
 
-                        @foreach ($categories->getUrlRange(1, $categories->lastPage()) as $page => $url)
-                            @if ($page == $categories->currentPage())
+                        @foreach ($posts->getUrlRange(1, $posts->lastPage()) as $page => $url)
+                            @if ($page == $posts->currentPage())
                                 <span class="page-link active">{{ $page }}</span>
                             @else
                                 <a href="{{ $url }}" class="page-link">{{ $page }}</a>
                             @endif
                         @endforeach
 
-                        @if ($categories->hasMorePages())
-                            <a href="{{ $categories->nextPageUrl() }}" class="page-link">›</a>
+                        @if ($posts->hasMorePages())
+                            <a href="{{ $posts->nextPageUrl() }}" class="page-link">›</a>
                         @else
                             <span class="page-link disabled">›</span>
                         @endif

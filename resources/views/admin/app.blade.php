@@ -243,8 +243,13 @@
                 <span>📊</span>
                 <span>Dashboard</span>
             </a>
+            
+             <a href="{{ route('admin.posts.index') }}" class="{{ request()->routeIs('admin.posts.*') ? 'active' : '' }}">
+                <span>📩</span>
+                <span>Post's</span>
+            </a>
 
-            <a href="{{ route('categories.index') }}" class="{{ request()->routeIs('categories.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.categories.index') }}" class="{{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
                 <span>📁</span>
                 <span>Categorias</span>
             </a>

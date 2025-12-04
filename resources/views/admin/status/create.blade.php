@@ -228,7 +228,7 @@
                     id="name"
                     name="name"
                     value="{{ old('name') }}"
-                    placeholder="Ex: Novo, Antigo..."
+                    placeholder="Ex: Publicado, Arquivado, Rascunho..."
                     class="{{ $errors->has('name') ? 'input-error' : '' }}"
                     required
                 >

@@ -35,12 +35,18 @@ class CategoryController extends Controller
             'name' => 'required|min:3',
             'description' => 'required',
         ]);
+
+        $name = $validatedValues['name'];
+        $description = $validatedValues['description'];
         
-        Category::query()->create($validatedValues);
+        Category::query()->create([
+            'name' => $name,
+            'description' => $description
+        ]);
 
         session()->flash('success', 'Categoria criada com sucesso!');
 
-        return redirect()->route('categories.index');
+        return redirect()->route('admin.categories.index');
     }
 
     public function show(Category $category)
@@ -72,7 +78,7 @@ class CategoryController extends Controller
         $category->delete();
 
         return redirect()
-            ->route('categories.index')
+            ->route('admin.categories.index')
             ->with('success', 'Categoria excluída com sucesso!'); 
     }
 }
