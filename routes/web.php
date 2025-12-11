@@ -34,6 +34,8 @@ Route::get('/blog/old', [BlogController::class, 'oldPosts'])->name('blog.old');
 Route::middleware('auth')->group(function () {
     Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 });
+
+
 Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::resource('categories', CategoryController::class);
@@ -41,4 +43,5 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('status', StatusController::class);
     Route::resource('authors', AuthorController::class);
     Route::resource('posts', PostController::class);
-});
+    
+}); 

@@ -1,6 +1,6 @@
 @extends ('admin.app')
 
-@section('title', 'Status')
+@section('title', 'Posts')
 
 @push ('styles')
     <style>
@@ -202,12 +202,12 @@
             <div class="breadcrumb">
                 <a href="{{ route('dashboard') }}">Dashboard</a> /
                 <a href="{{ route('admin.posts.index') }}">Status</a> /
-                {{ $posts->name }}
+                {{ $post->name }}
             </div>
         </div>
         <div class="actions">
-            <a href="{{ route('admin.posts.edit', $posts) }}" class="btn btn-primary">✏️ Editar</a>
-            <form action="{{ route('admin.posts.destroy', $posts) }}" method="POST" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja excluir este posts?')">
+            <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-primary">✏️ Editar</a>
+            <form action="{{ route('admin.posts.destroy', $post) }}" method="POST" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja excluir este post?')">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">🗑️ Excluir</button>
@@ -217,29 +217,29 @@
 
     <div class="card">
         <div class="detail-group">
-            <div class="detail-label">Nome do posts</div>
-            <div class="detail-value">{{ $posts->name }}</div>
+            <div class="detail-label">Nome do post</div>
+            <div class="detail-value">{{ $post->name }}</div>
         </div>
 
         <div class="detail-group">
             <div class="detail-label">Descrição</div>
-            <div class="detail-value {{ empty($posts->description) ? 'empty' : '' }}">
-                {{ $posts->description ?? 'Nenhuma descrição fornecida.' }}
+            <div class="detail-value {{ empty($post->description) ? 'empty' : '' }}">
+                {{ $post->description ?? 'Nenhuma descrição fornecida.' }}
             </div>
         </div>
 
         <div class="metadata">
             <div class="metadata-item">
                 <div class="metadata-label">ID</div>
-                <div class="metadata-value">#{{ $posts->id }}</div>
+                <div class="metadata-value">#{{ $post->id }}</div>
             </div>
             <div class="metadata-item">
                 <div class="metadata-label">Criada em</div>
-                <div class="metadata-value">{{ $posts->created_at->format('d/m/Y H:i') }}</div>
+                <div class="metadata-value">{{ $post->created_at->format('d/m/Y H:i') }}</div>
             </div>
             <div class="metadata-item">
                 <div class="metadata-label">Última atualização</div>
-                <div class="metadata-value">{{ $posts->updated_at->format('d/m/Y H:i') }}</div>
+                <div class="metadata-value">{{ $post->updated_at->format('d/m/Y H:i') }}</div>
             </div>
         </div>
 

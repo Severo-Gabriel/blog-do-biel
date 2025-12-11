@@ -10,9 +10,6 @@ use Illuminate\Support\Str;
 
 class TagController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $tags = Tag::paginate(10);
@@ -20,17 +17,11 @@ class TagController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('admin.tags.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -82,9 +73,6 @@ class TagController extends Controller
                         ->with('success', 'Tag atualizada com sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Tag $tag)
     {
 
@@ -94,8 +82,9 @@ class TagController extends Controller
                         ->with('success', 'Tag excluída com sucesso!');
     }
     public function show($id)
+
     {
-    $tag = Tag::findOrFail($id);
-    return view('admin.tags.show', compact('tag'));
+        $tag = Tag::findOrFail($id);
+        return view('admin.tags.show', compact('tag'));
     }
 }

@@ -14,10 +14,12 @@ class Post extends Model
     protected $fillable = [
         'title',
         'subject',
+        'description',
         'content',
         'category_id',
         'author_id',
         'status_id',
+        
     ];
 
     public function category(): BelongsTo

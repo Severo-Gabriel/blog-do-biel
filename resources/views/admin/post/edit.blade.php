@@ -1,6 +1,6 @@
 @extends('admin.app')
 
-@section('title', 'Editar Status')
+@section('title', 'Editar Posts')
 
 @push('styles')
     <style>
@@ -202,10 +202,10 @@
 @section('content')
 <div class="content">
     <div class="header">
-        <h1>Editar Status</h1>
+        <h1>Editar Posts</h1>
         <div class="breadcrumb">
             <a href="{{ route('dashboard') }}">Dashboard</a> /
-            <a href="{{ route('admin.status.index') }}">Status</a> /
+            <a href="{{ route('admin.posts.index') }}">Status</a> /
             Editar
         </div>
     </div>
@@ -218,10 +218,10 @@
 
     <div class="form-container">
         <div class="info-badge">
-            📝 Editando: <strong>{{ $status->name }}</strong>
+            📝 Editando: <strong>{{ $post->name }}</strong>
         </div>
 
-        <form action="{{ route('admin.status.update', $status) }}" method="POST">
+        <form action="{{ route('admin.posts.update', $post) }}" method="POST">
             @csrf
             @method('PUT')
 
@@ -233,7 +233,7 @@
                     type="text"
                     id="name"
                     name="name"
-                    value="{{ old('name', $status->name) }}"
+                    value="{{ old('name', $post->name) }}"
                     placeholder="Ex: Ativo, Destativado..."
                     class="{{ $errors->has('name') ? 'input-error' : '' }}"
                     required
@@ -252,15 +252,15 @@
                     name="description"
                     placeholder="Descreva sobre o status..."
                     class="{{ $errors->has('description') ? 'input-error' : '' }}"
-                >{{ old('description', $status->description) }}</textarea>
+                >{{ old('description', $post->description) }}</textarea>
                 @error('description')
                 <span class="error">{{ $message }}</span>
                 @enderror
             </div>
-
+                
             <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Atualizar Status</button>
-                <a href="{{ route('admin.status.index') }}" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Atualizar Post</button>
+                <a href="{{ route('admin.posts.index') }}" class="btn btn-secondary">Cancelar</a>
             </div>
         </form>
     </div>
