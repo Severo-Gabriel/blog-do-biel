@@ -224,6 +224,30 @@
 
         .form-input[type="date"]::-webkit-calendar-picker-indicator {
             filter: invert(1);
+            .form-group select,
+        .form-group select[multiple] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+        }
+
+        /* placeholder do select */
+        .form-group select option {
+            color: #000;
+        }
+
+        /* altura do select múltiplo */
+        .form-group select[multiple] {
+            min-height: 120px;
+        }
+        select[multiple].form-control {
+        min-height: 120px;
+        }
         }
     </style>
     @stack('styles')

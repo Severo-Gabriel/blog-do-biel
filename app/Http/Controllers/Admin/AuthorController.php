@@ -14,7 +14,7 @@ class AuthorController extends Controller
         return view('admin.authors.index', compact('authors'));
     }
 
-    public function create()
+    public function create() 
     {
         return view('admin.authors.create');
     }

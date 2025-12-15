@@ -7,6 +7,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Author;
 use App\Models\Category;
+use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Status;
 use Illuminate\Http\JsonResponse;
@@ -24,7 +25,11 @@ class PostController extends Controller
     public function create()
     {     
         $categories = Category::all();
-        return view('admin.post.create', compact('categories'));
+        $statuses = Status::all();
+        $tags = Tag::all();
+        $authors = Author::all();
+
+        return view('admin.post.create', compact('categories', 'tags', 'authors', 'statuses'));
     }
     public function store(Request $request)
     {   
@@ -54,7 +59,7 @@ class PostController extends Controller
     }
     public function show(Post $post)
     {
-        return view('admin.post.show', compact('post'));
+        return view('admin.posts.show', compact('posts'));
     }
     public function edit(Post $post)
     {

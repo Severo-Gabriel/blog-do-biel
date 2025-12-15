@@ -187,6 +187,30 @@
             background-color: rgba(255, 71, 87, 0.2);
             border: 1px solid rgba(255, 71, 87, 0.5);
             color: #ff4757;
+            .form-group select,
+            .form-group select[multiple] {
+                width: 100%;
+                padding: 12px;
+                border-radius: 8px;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                background: rgba(255, 255, 255, 0.15);
+                color: #fff;
+                font-size: 14px;
+                outline: none;
+            }
+
+            /* placeholder do select */
+            .form-group select option {
+                color: #000;
+            }
+
+            /* altura do select múltiplo */
+            .form-group select[multiple] {
+                min-height: 120px;
+            }
+            select[multiple].form-control {
+            min-height: 120px;  
+            }
         }
     </style>
 @endpush
@@ -194,10 +218,10 @@
 @section('content')
 <div class="content">
     <div class="header">
-        <h1>Novo Status</h1>
+        <h1>Novo Post</h1>
         <div class="breadcrumb">
             <a href="{{ route('dashboard') }}">Dashboard</a> /
-            <a href="{{ route('admin.posts.index') }}">Status</a> /
+            <a href="{{ route('admin.posts.index') }}">Posts</a> /
             <a href="{{ route('admin.posts.create') }}">Criar</a> /
      
         </div>
@@ -255,28 +279,13 @@
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="tags_id">
-                    Catogorias: <span class="required">*</span>
-                </label>  
-                <select data-placeholder="Begin typing a name to filter..." name="category_id" required>
-                    <option value>--- Selecione uma opção ---</option>
-
-                    @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endforeach
-                </select>
-
-                @error('tag_id')
-                    <span class="error">{{ $message }}</span>
-                @enderror
-            </div>
+           
 
             <div class="form-group">
                 <label for="tags_id">
                     Tags: <span class="required">*</span>
                 </label>  
-                <select data-placeholder="Begin typing a name to filter..." multiple class="chosen-select" name="tags[]">
+                <select name="tags[]" multiple class="chosen-select">
                     <option value>--- Selecione uma opção ---</option>
                     
                       @foreach ($tags as $tag)
@@ -291,35 +300,55 @@
             </div>
 
             <div class="form-group">
-                <label for="'author_id">
-                    Autor: <span class="required">*</span>
-                </label>
+                <label for="category_id">
+                    Categorias: <span class="required">*</span>
+                </label>  
+                <select name="category[]" multiple class="chosen-select">
+                    <option value>--- Selecione uma opção ---</option>
+                    
+                      @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
 
-                <select name="author_id" id="author_id" class="{{ $errors->has('author_id') ? 'input-error' : '' }}">
-                    <option value="">Selecione</option>
-                    <option value="2">Severin</option>
-                    <option value="author2">Nego dé</option>
-                    <option value="author3">Jaspion</option>
                 </select>
 
-                @error('authors_id')
+                @error('tag_id')
                     <span class="error">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label for="'status_id">
-                    Status: <span class="required">*</span>
-                </label>
+                <label for="author_id">
+                    Autores: <span class="required">*</span>
+                </label>  
+                <select name="author[]" multiple class="chosen-select">
+                    <option value>--- Selecione uma opção ---</option>
+                    
+                      @foreach ($authors as $author)
+                        <option value="{{ $author->id }}">{{ $author->name }}</option>
+                    @endforeach
 
-                <select name="status_id" id="status_id" class="{{ $errors->has('status_id') ? 'input-error' : '' }}">
-                    <option value="">Selecione</option>
-                    <option value="status1">Publicado</option>
-                    <option value="status2">Arquivado</option>
-                    <option value="5">Rascunho</option>
                 </select>
 
-                @error('status_id')
+                @error('author_id')
+                    <span class="error">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="status_id">
+                    Status: <span class="required">*</span>
+                </label>  
+                <select name="status[]" multiple class="chosen-select">
+                    <option value>--- Selecione uma opção ---</option>
+                    
+                      @foreach ($statuses as $status)
+                        <option value="{{ $status->id }}">{{ $status->name }}</option>
+                    @endforeach
+
+                </select>
+
+                @error('author_id')
                     <span class="error">{{ $message }}</span>
                 @enderror
             </div>
